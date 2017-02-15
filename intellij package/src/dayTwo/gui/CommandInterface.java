@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static dayTwo.models.GeneratedEmployees.employees;
+
 /**
  * Created by student on 14/02/2017.
  */
 public class CommandInterface {
-
+//Command gui
     static Scanner input = new Scanner(System.in);
     static boolean edit = false;
 
@@ -50,21 +52,27 @@ public class CommandInterface {
                     break;
                 case 3:
                     edit = true;
+                    System.out.println("Enter search by first name");
+                    input.nextLine();
+                    System.out.println(TaskProcessing.searchByFirstName(input.nextLine()));
+                    System.out.print("Enter index to edit: ");
+                    int index= input.nextInt();
+                    System.out.println(TaskProcessing.editEmployee(index, inputDetails(employees.get(index))));
+                    break;
+                case 4:
+                    System.out.print("Enter the first name to search: ");
+                    input.nextLine();
+                    System.out.println(TaskProcessing.searchByFirstName(input.nextLine()));
+                    System.out.print("Enter index to remove: ");
+                    System.out.println(TaskProcessing.removeEmployee(input.nextInt()));
                     break;
                 case 5:
                     System.out.print("Enter the first name to search: ");
                     input.nextLine();
                     System.out.println(TaskProcessing.searchByFirstName(input.nextLine()));
                     break;
-
-
-
                 case 6:
                     keeping_running = false;
-
-
-
-
             }
         }
     }

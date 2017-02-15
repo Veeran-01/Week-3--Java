@@ -42,6 +42,17 @@ public class ContactInterface {
                     //Method for displaying all contacts is in ContactsTaskProcessing
                     ContactsTaskProcessing.listAllContacts();
                     break;
+                case 2:
+                    System.out.println(ContactsTaskProcessing.createNew(inputDetails(null)));
+                    break;
+                case 3:
+                    edit= true;
+                    break;
+                case 5:
+                    System.out.print("Enter first name of contact you're searching: ");
+                    input.nextLine();
+                    System.out.println(ContactsTaskProcessing.searchByFirstName(input.nextLine()));
+                    break;
 
 
                 case 6:
@@ -50,24 +61,30 @@ public class ContactInterface {
 
         }
     }
- /*   static List<String> inputDetails(Employee e){
-        //local temp employee string data
-        List<String> tempEmployee = new ArrayList<>();
+    //Method to collect data- for edit and add
+    static List<String>inputDetails(Contact c){
+        //local temp contacts string data
+        List<String> tempContacts = new ArrayList<>();
         input.nextLine();
         //collect user input and add to List
-        System.out.print("ID: " + (edit ==true ? e.getId() + "\nChange: " : "")); //Using ternary if edit == true display whats before ":" if false display everything after ":"
-        tempEmployee.add(input.nextLine());
-        System.out.print("First name: " + (edit ==true ? e.getFirstName() + "\nChange: " : ""));
-        tempEmployee.add(input.nextLine());
-        System.out.print("Last name: " + (edit ==true ? e.getLastName() + "\nChange: " : ""));
-        tempEmployee.add(input.nextLine());
-        System.out.print("DOB(YYYY/MM/DD): " + (edit ==true ? e.getDob() + "\nChange: " : ""));
-        tempEmployee.add(input.nextLine());
-        System.out.print("Hire date(YYYY/MM/DD): " + (edit ==true ? e.getHireDate() + "\nChange: " : ""));
-        tempEmployee.add(input.nextLine());
-        System.out.print("Job role: " + (edit ==true ? e.getJobRole() + "\nChange: " : ""));
-        tempEmployee.add(input.nextLine());
+        System.out.print("ID: " + (edit ==true ? c.getId() + "\nChange: " : "")); //Using ternary if edit == true display whats before ":" if false display everything after ":"
+        tempContacts.add(input.nextLine());
+        System.out.print("Email: " + (edit ==true ? c.getEmail() + "\nChange: " : ""));
+        tempContacts.add(input.nextLine());
+        System.out.print("Phone Number: " + (edit ==true ? c.getPhoneNumber() + "\nChange: " : ""));
+        tempContacts.add(input.nextLine());
+        System.out.print("First Name: " + (edit ==true ? c.getPerson().getFirstName() + "\nChange: " : ""));
+        tempContacts.add(input.nextLine());
+        System.out.print("Last Name: " + (edit ==true ? c.getPerson().getLastName() + "\nChange: " : ""));
+        tempContacts.add(input.nextLine());
+        System.out.print("Door Number: " + (edit ==true ? c.getAddress().getDoorNumber() + "\nChange: " : ""));
+        tempContacts.add(input.nextLine());
+        System.out.print("Street name: " + (edit ==true ? c.getAddress().getStreetName() + "\nChange: " : ""));
+        tempContacts.add(input.nextLine());
+        System.out.print("Postcode: " + (edit ==true ? c.getAddress().getPostCode() + "\nChange: " : ""));
+        tempContacts.add(input.nextLine());
 
         edit= false;
-        return tempEmployee;*/
+        return tempContacts;
+    }
 }
