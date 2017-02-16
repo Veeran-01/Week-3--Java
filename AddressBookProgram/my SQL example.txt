@@ -1,0 +1,300 @@
+mysql> show database
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near 'datab
+ase
+show databases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| augustdpp          |
+| awesome            |
+| employeeprogramme  |
+| matt               |
+| matthew            |
+| mysql              |
+| octdpp             |
+| performance_schema |
+| posdb              |
+| sakila             |
+| sys                |
+| ticketsystem       |
+| world              |
+| zee                |
++--------------------+
+15 rows in set (0.05 sec)
+
+mysql> drop database ticketsystem;
+Query OK, 2 rows affected (1.69 sec)
+
+mysql> create database ticketsystem;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use ticketsystem;
+Database changed
+mysql>
+mysql> grant all on ticketsystem.*
+    -> to 'awesome'@'localhost
+    '> identified by
+    '> 'Password100';
+    '>
+    '> \c
+    '> ^C
+mysql> grant all on ticketsystem.*
+    -> to 'awesome'@'localhost'
+    -> identified by
+    -> 'Password 100';
+Query OK, 0 rows affected, 1 warning (0.19 sec)
+
+mysql> show grants;
++---------------------------------------------------------------------+
+| Grants for root@localhost                                           |
++---------------------------------------------------------------------+
+| GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' WITH GRANT OPTION |
+| GRANT PROXY ON ''@'' TO 'root'@'localhost' WITH GRANT OPTION        |
++---------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> show grants for 'awesome'@'localhost';
++-------------------------------------------------------------------+
+| Grants for awesome@localhost                                      |
++-------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'awesome'@'localhost'                       |
+| GRANT ALL PRIVILEGES ON `ticketsystem`.* TO 'awesome'@'localhost' |
++-------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table admin (
+    -> id int not null auto_increment key,
+    -> first_name varchar(50) not null,
+    -> last_name varchar(80) not null,
+    -> username varchar(20) nut null,
+    -> password varchar(2) not null);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near 'nut n
+ull,
+password varchar(2) not null)' at line 5
+mysql> create table admin(
+    -> id int not null auto_increment key,
+    -> first_name varchar(50) not null,
+    -> last_name varchar(80) not null,
+    -> username varchar(20) not null,
+    -> password varchar(20) not null);
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> show columns from admin;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(50) | NO   |     | NULL    |                |
+| last_name  | varchar(80) | NO   |     | NULL    |                |
+| username   | varchar(20) | NO   |     | NULL    |                |
+| password   | varchar(20) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.13 sec)
+
+mysql> insert into admin
+    -> (first_name, last_name, username, password)
+    -> values
+    -> ('Alex', 'Kennedy', 'alexk', 'Password100');
+Query OK, 1 row affected (0.18 sec)
+
+mysql> insert into admin
+    -> (first_name, last_name, username, password)
+    -> values
+    -> ('Veeran', 'Shergill', 'veerans', 'Password100');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into admin
+    -> (first_name, last_name, username, password)
+    -> values
+    -> ('John', 'Jones', 'johnj', 'Password100');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from admin;
++----+------------+-----------+----------+-------------+
+| id | first_name | last_name | username | password    |
++----+------------+-----------+----------+-------------+
+|  1 | Alex       | Kennedy   | alexk    | Password100 |
+|  2 | Veeran     | Shergill  | veerans  | Password100 |
+|  3 | John       | Jones     | johnj    | Password100 |
++----+------------+-----------+----------+-------------+
+3 rows in set (0.04 sec)
+
+mysql> select * from admin where id=2;
++----+------------+-----------+----------+-------------+
+| id | first_name | last_name | username | password    |
++----+------------+-----------+----------+-------------+
+|  2 | Veeran     | Shergill  | veerans  | Password100 |
++----+------------+-----------+----------+-------------+
+1 row in set (0.03 sec)
+
+mysql> create table customer(
+    -> id int not null auto_increment key,
+    -> first_name varchar(50) not null,
+    -> last_name varchar(80) not null,
+    -> telephone varchar(20),
+    -> email varchar(50),
+    -> address varchar(100)
+    -> );
+Query OK, 0 rows affected (0.41 sec)
+
+mysql> show columns from admin;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(50) | NO   |     | NULL    |                |
+| last_name  | varchar(80) | NO   |     | NULL    |                |
+| username   | varchar(20) | NO   |     | NULL    |                |
+| password   | varchar(20) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.02 sec)
+
+mysql> show columns from customer;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(50)  | NO   |     | NULL    |                |
+| last_name  | varchar(80)  | NO   |     | NULL    |                |
+| telephone  | varchar(20)  | YES  |     | NULL    |                |
+| email      | varchar(50)  | YES  |     | NULL    |                |
+| address    | varchar(100) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.05 sec)
+
+mysql> insert into customer
+    -> (first_name, last_name, telephone, email, address)
+    -> values
+    -> ('Meena', 'Saray', '07734213211', 'meena@hotmail.com', '42 Shelley Avenue
+, e12 6sw');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into customer
+    -> (first_name, last_name, telephone, email, address)
+    -> values
+    -> ('Jack', 'Saray', '077543221', 'jack@hotmail.com', '42 Monega Avenue, e12
+ 6sw');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from customer;
++----+------------+-----------+-------------+-------------------+---------------
+-------------+
+| id | first_name | last_name | telephone   | email             | address
+             |
++----+------------+-----------+-------------+-------------------+---------------
+-------------+
+|  1 | Meena      | Saray     | 07734213211 | meena@hotmail.com | 42 Shelley Ave
+nue, e12 6sw |
+|  2 | Jack       | Saray     | 077543221   | jack@hotmail.com  | 42 Monega Aven
+ue, e12 6sw  |
++----+------------+-----------+-------------+-------------------+---------------
+-------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table customer
+    -> add column
+    -> cus_img LONGBLOB
+    -> after address;
+Query OK, 0 rows affected (1.38 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show columns from customer;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(50)  | NO   |     | NULL    |                |
+| last_name  | varchar(80)  | NO   |     | NULL    |                |
+| telephone  | varchar(20)  | YES  |     | NULL    |                |
+| email      | varchar(50)  | YES  |     | NULL    |                |
+| address    | varchar(100) | YES  |     | NULL    |                |
+| cus_img    | longblob     | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.02 sec)
+
+mysql> create table ticket(
+    ->  id int not null auto_increment,
+    ->  admin_id int not null,
+    ->  customer_id int not null,
+    ->  time_open datetime not null,
+    ->  time_update datetime,
+    ->  subject varchar(50) not null,
+    ->  message text(65535),
+    ->  status tinyint not null,
+    ->  time_close datetime,
+    ->  primary key (id),
+    ->  foreign key (admin_id) references admin(id),
+    ->  foreignkey (customer_id) references customer(id)
+    ->
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near '(cust
+omer_id) references customer(id)
+
+)' at line 13
+mysql> create table ticket(
+    ->  id int not null auto_increment,
+    ->  admin_id int not null,
+    ->  customer_id int not null,
+    ->  time_open datetime not null,
+    ->  time_update datetime,
+    ->  subject varchar(50) not null,
+    ->  message text(65535),
+    ->  status tinyint not null,
+    ->  time_close datetime,
+    ->  primary key (id),
+    ->  foreign key (admin_id) references admin(id),
+    ->  foreign key (customer_id) references customer(id)
+    ->
+    -> );
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> insert into ticket
+    -> (admin_id,customer_id, time_open,subject,status)
+    -> values
+    -> (1,2,'2017-02-16 12:01:00', 'Need a new football', 1);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from ticket;
++----+----------+-------------+---------------------+-------------+-------------
+--------+---------+--------+------------+
+| id | admin_id | customer_id | time_open           | time_update | subject
+        | message | status | time_close |
++----+----------+-------------+---------------------+-------------+-------------
+--------+---------+--------+------------+
+|  1 |        1 |           2 | 2017-02-16 12:01:00 | NULL        | Need a new f
+ootball | NULL    |      1 | NULL       |
++----+----------+-------------+---------------------+-------------+-------------
+--------+---------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select
+    -> a.subject,
+    -> a.time_open,
+    -> a.status,
+    -> b.id,
+    -> b.first_name,
+    -> c.id,
+    -> c.first_name
+    -> from ticket a
+    -> join admin b on a.admin_id=b.id
+    -> join customer c on a.customer_id=c.id
+    -> where b.id=1;
++---------------------+---------------------+--------+----+------------+----+---
+---------+
+| subject             | time_open           | status | id | first_name | id | fi
+rst_name |
++---------------------+---------------------+--------+----+------------+----+---
+---------+
+| Need a new football | 2017-02-16 12:01:00 |      1 |  1 | Alex       |  2 | Ja
+ck       |
++---------------------+---------------------+--------+----+------------+----+---
+---------+
+1 row in set (0.07 sec)
+
+mysql>
